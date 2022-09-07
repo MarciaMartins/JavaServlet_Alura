@@ -9,6 +9,9 @@ Objetivos:
 
 Projeto:
 Projeto desenvolvido trata-se de um cadastro simples de uma empresa.
+Inicialmente o projeto foi desenvolvido com html escrito diretamente na servlet (versoes Parte 01 a 03), posteriormente foi alterado para trabalhar com JSP.
+O projeto não armazena efetivamente os dados em um banco de dados, foi dada como primeira solução criação de uma lista na classe Bank, para simular a integração com o banco. As informações são perdidadas frequentemente com essa solução inicial.
+
 
 Linguagem Java 1.8, projeto do tipo Dynamic Web Project.
 Servidor Apache Tomcat.

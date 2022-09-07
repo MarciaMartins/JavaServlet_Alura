@@ -9,6 +9,14 @@ public class Bank {
 	
 	private static List<Company> listCompany = new ArrayList<>();
 	private static Integer countCompany=0;
+	
+	// criando massa static
+	static {
+		Company Alura = new Company("Alura", "123444");
+		Company Caelum = new Company("Caelum", "33444");
+		listCompany.add(Alura);
+		listCompany.add(Caelum);
+	}
 
 	public Integer add(Company company) {
 		company.setId(countCompany++); 
@@ -21,7 +29,6 @@ public class Bank {
 	}
 	
 	public Company getCompanyById(Integer companyId) {
-		System.out.println("Bnaco");
 		return listCompany.get(companyId);
 	}
 

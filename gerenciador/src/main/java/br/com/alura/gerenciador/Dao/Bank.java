@@ -10,7 +10,6 @@ public class Bank {
 	private static List<Company> listCompany = new ArrayList<>();
 	private static Integer countCompany=0;
 	
-	// criando massa static
 	static {
 		Company Alura = new Company("Alura", "123444");
 		Company Caelum = new Company("Caelum", "33444");

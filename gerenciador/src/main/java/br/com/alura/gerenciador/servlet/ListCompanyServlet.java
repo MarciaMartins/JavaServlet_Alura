@@ -2,8 +2,10 @@ package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,22 +19,26 @@ import br.com.alura.gerenciador.model.dto.CompanyResponse;
 @WebServlet("/listarEmpresas")
 public class ListCompanyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private List<CompanyResponse> listCompanyResponse = new ArrayList<CompanyResponse>();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Bank bank = new Bank();
 		List<Company> listCompany = bank.getListCompany();
+		if(listCompany!=null){
+			listCompany.forEach(c -> {
+				CompanyResponse compResp = new CompanyResponse(c);
+				listCompanyResponse .add(compResp);
+			});
+		}else{
+			Company c = new Company("Teste","1111");
+			CompanyResponse compResp = new CompanyResponse(c);
+			listCompanyResponse.add(compResp);
+		}
 		
-		PrintWriter out = response.getWriter();
-		out.println("<html><body> <p>Empresas cadastradas no sistema</p>"
-				+ "<ul>");
+		request.setAttribute("listCompany", listCompanyResponse );
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaEmpresas.jsp");
+		requestDispatcher.forward(request, response);
 		
-		listCompany.forEach(c-> {
-			CompanyResponse responseCompany = new CompanyResponse(c);
-			out.println("<li><i><b>"
-					+ responseCompany.getName() 
-					+"</i></b>. CNPJ - "+ responseCompany.getCnpj()+"</li>");
-		});
-		out.println("<ul></html></body>");
 	}
 
 }

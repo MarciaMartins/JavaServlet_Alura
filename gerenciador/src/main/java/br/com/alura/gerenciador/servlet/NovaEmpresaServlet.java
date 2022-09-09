@@ -37,7 +37,6 @@ public class NovaEmpresaServlet extends HttpServlet {
 		request.setAttribute("cnpj", responseCompany.getCnpj());
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/novaEmpresaCriada.jsp");
 		requestDispatcher.forward(request, response);
-			
 	
 	}
 

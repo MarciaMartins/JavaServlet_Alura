@@ -18,23 +18,26 @@ import br.com.alura.gerenciador.model.dto.CompanyResponse;
 public class NovaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nameCompany = request.getParameter("name");
 		String cnpjCompany = request.getParameter("cnpj");
-				
-		CompanyRequest requestCompany = new CompanyRequest(nameCompany, cnpjCompany);
-		Company company = requestCompany.convertToObject();
-				
-		Bank bank = new Bank();
-		Integer positionBank = bank.add(company);
-		company = bank.getCompanyById(positionBank);
 		
-		CompanyResponse responseCompany = new CompanyResponse(company);
-		System.out.println("Cadastrando nova empresa");
-		request.setAttribute("company", responseCompany.getName());
-		request.setAttribute("cnpj", responseCompany.getCnpj());
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/novaEmpresaCriada.jsp");
-		requestDispatcher.forward(request, response);
+		if(nameCompany!=null & cnpjCompany !=null) {
+			CompanyRequest requestCompany = new CompanyRequest(nameCompany, cnpjCompany);
+			Company company = requestCompany.convertToObject();
+					
+			Bank bank = new Bank();
+			Integer positionBank = bank.add(company);
+			company = bank.getCompanyById(positionBank);
+			
+			CompanyResponse responseCompany = new CompanyResponse(company);
+			System.out.println("Cadastrando nova empresa");
+			request.setAttribute("company", responseCompany.getName());
+		}
+			
+		//RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listarEmpresas");
+		//requestDispatcher.forward(request, response);
+		response.sendRedirect("listarEmpresas");
 	
 	}
 

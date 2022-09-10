@@ -1,7 +1,6 @@
 package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +20,11 @@ public class ListCompanyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<CompanyResponse> listCompanyResponse = new ArrayList<CompanyResponse>();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Bank bank = new Bank();
 			
 		List<Company> listCompany = bank.getListCompany();
-		System.out.println(listCompany.isEmpty());
+		
 		if(listCompany.isEmpty()) {
 			Company Alura = new Company("Alura", "123444");
 			Company Caelum = new Company("Caelum", "33444");
@@ -40,6 +39,7 @@ public class ListCompanyServlet extends HttpServlet {
 		
 		System.out.println("Listando empresas");
 		request.setAttribute("listCompany", listCompanyResponse );
+						
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaEmpresas.jsp");
 		requestDispatcher.forward(request, response);
 		

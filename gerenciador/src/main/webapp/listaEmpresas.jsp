@@ -1,9 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="br.com.alura.gerenciador.model.dto.CompanyResponse, java.util.List, java.io.IOException"%> 
-<%
-	List<CompanyResponse> listCompany = (List<CompanyResponse>) request.getAttribute("listCompany");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="br.com.alura.gerenciador.model.dto.CompanyResponse"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,9 +11,10 @@
 	<body>
 		<p>Empresas cadastradas no sistema</p>
 		<ul>
-			<%for(CompanyResponse company: listCompany){%>
-				<li><%=company.getName() %>.CNPJ - <%=company.getCnpj() %></li>
-			<%}%>
+			<c:forEach items="${listCompany}" var="company">
+				<li><p>${company.name}; CNPJ: ${company.cnpj};Dt.Inclusão: <fmt:formatDate value="${company.date}" pattern="dd/MM/yyyy"/></p>
+				</li>
+			</c:forEach>
 		</ul>
 	</body>
 </html>

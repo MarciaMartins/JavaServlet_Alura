@@ -23,18 +23,22 @@ public class ListCompanyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Bank bank = new Bank();
+			
 		List<Company> listCompany = bank.getListCompany();
-		if(listCompany!=null){
-			listCompany.forEach(c -> {
-				CompanyResponse compResp = new CompanyResponse(c);
-				listCompanyResponse .add(compResp);
-			});
-		}else{
-			Company c = new Company("Teste","1111");
+		System.out.println(listCompany.isEmpty());
+		if(listCompany.isEmpty()) {
+			Company Alura = new Company("Alura", "123444");
+			Company Caelum = new Company("Caelum", "33444");
+			bank.add(Alura);
+			bank.add(Caelum);
+		}		
+		
+		listCompany.forEach(c -> {
 			CompanyResponse compResp = new CompanyResponse(c);
 			listCompanyResponse.add(compResp);
-		}
+		});
 		
+		System.out.println("Listando empresas");
 		request.setAttribute("listCompany", listCompanyResponse );
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaEmpresas.jsp");
 		requestDispatcher.forward(request, response);

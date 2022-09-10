@@ -1,14 +1,18 @@
 package br.com.alura.gerenciador.model;
 
+import java.time.LocalDate;
+
 public class Company {
 	
 	private Integer id;
 	private String name;
 	private String cnpj;
+	private LocalDate date;
 	
 	public Company(String name, String cnpj) {
 		this.name=name;
 		this.cnpj=cnpj;
+		this.date = LocalDate.now();
 	}
 
 	public Integer getId() {
@@ -27,5 +31,8 @@ public class Company {
 		this.id = id;
 	}
 	
+	public LocalDate getDate() {
+		return date;
+	}
 
 }

@@ -34,5 +34,9 @@ public class Company {
 	public LocalDate getDate() {
 		return date;
 	}
+	
+	public String getCnpj() {
+		return cnpj;
+	}
 
 }

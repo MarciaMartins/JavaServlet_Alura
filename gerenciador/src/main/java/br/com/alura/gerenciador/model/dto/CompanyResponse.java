@@ -7,14 +7,14 @@ import java.util.Date;
 import br.com.alura.gerenciador.model.Company;
 
 public class CompanyResponse {
-	
+
 	private String name;
 	private String cnpj;
 	private Date date;
 	
 	public CompanyResponse(Company company) {
 		this.name=company.getName();
-		this.cnpj=company.getCnpjMask();
+		this.cnpj=company.getCnpj();
 		this.date= convertDate(company.getDate());
 	}
 	

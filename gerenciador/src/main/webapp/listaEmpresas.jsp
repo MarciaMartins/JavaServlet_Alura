@@ -17,7 +17,7 @@
 		<ul>
 			<c:forEach items="${listCompany}" var="company">
 				<li><p>${company.name}; CNPJ: ${company.cnpj}; 
-				Dt.Inclus„o: <fmt:formatDate value="${company.date}" pattern="dd/MM/yyyy"/>
+				Dt.Inclus√£o: <fmt:formatDate value="${company.date}" pattern="dd/MM/yyyy"/>
 				<a href="/gerenciador/editarEmpresa?cnpj=${company.cnpj}"">editar</a>        
 				<a href="/gerenciador/excluirEmpresa?cnpj=${company.cnpj}">    excluir</a></p>
 				</li>

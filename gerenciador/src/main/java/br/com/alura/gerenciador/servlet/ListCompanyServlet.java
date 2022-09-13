@@ -20,14 +20,18 @@ import br.com.alura.gerenciador.model.dto.CompanyResponse;
 public class ListCompanyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<CompanyResponse> listCompanyResponse = new ArrayList<CompanyResponse>();
+
 	private Boolean firstCall = true;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		Bank bank = new Bank();
 		
 		
 		List<Company> listCompany = bank.getListCompany();
+
 		if(listCompany.isEmpty() && firstCall) {
+
 			Company Alura = new Company("Alura", "123444");
 			Company Caelum = new Company("Caelum", "33444");
 			bank.add(Alura);
@@ -42,6 +46,7 @@ public class ListCompanyServlet extends HttpServlet {
 		
 		System.out.println("Listando empresas");
 		request.setAttribute("listCompany", listCompanyResponse );
+						
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaEmpresas.jsp");
 		requestDispatcher.forward(request, response);
 		

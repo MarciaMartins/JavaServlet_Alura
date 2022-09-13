@@ -16,9 +16,10 @@
 		<p>Empresas cadastradas no sistema</p>
 		<ul>
 			<c:forEach items="${listCompany}" var="company">
-				<li><p>${company.name}; CNPJ: ${company.cnpj};Dt.Inclusão: <fmt:formatDate value="${company.date}" pattern="dd/MM/yyyy"/></p>
-				<a href="/gerenciador/editarEmpresa?id=${company.codeCompany}">editar
-				</a>  <a href="/gerenciador/excluirEmpresa?cnpj=${company.cnpj}">excluir</a>
+				<li><p>${company.name}; CNPJ: ${company.cnpj}; 
+				Dt.Inclusão: <fmt:formatDate value="${company.date}" pattern="dd/MM/yyyy"/>
+				<a href="/gerenciador/editarEmpresa?cnpj=${company.cnpj}"">editar</a>        
+				<a href="/gerenciador/excluirEmpresa?cnpj=${company.cnpj}">    excluir</a></p>
 				</li>
 			</c:forEach>
 		</ul>

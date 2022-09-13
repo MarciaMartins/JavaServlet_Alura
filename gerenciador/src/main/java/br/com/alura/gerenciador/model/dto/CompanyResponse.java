@@ -7,14 +7,12 @@ import java.util.Date;
 import br.com.alura.gerenciador.model.Company;
 
 public class CompanyResponse {
-	
-	private Integer codeCompany;
+
 	private String name;
 	private String cnpj;
 	private Date date;
 	
 	public CompanyResponse(Company company) {
-		this.codeCompany=company.getId();
 		this.name=company.getName();
 		this.cnpj=company.getCnpj();
 		this.date= convertDate(company.getDate());
@@ -31,10 +29,6 @@ public class CompanyResponse {
 	public Date convertDate(LocalDate dateLocal) {
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		return Date.from(dateLocal.atStartOfDay(defaultZoneId).toInstant());
-	}
-	
-	public Integer getCodeCompany() {
-		return codeCompany;
 	}
 	
 	public Date getDate() {

@@ -1,11 +1,9 @@
 package br.com.alura.gerenciador.Dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import br.com.alura.gerenciador.model.Company;
 
@@ -13,9 +11,7 @@ public class Bank {
 	
 	private static List<Company> listCompany = new ArrayList<>();
 	private static Integer countCompany=0;
-	
-	private Integer idBusca=-1;
-	
+		
 	public Integer add(Company company) {
 		company.setId(countCompany++); 
 		listCompany.add(company);
@@ -44,6 +40,22 @@ public class Bank {
 			.collect(Collectors.toList());
 		if(listCompanyFind.isEmpty()) return null;
 		return listCompanyFind.get(0);
+	}
+	
+	public Company updateCompany(Company company, String name, LocalDate date){
+		Company updateCompany = listCompany.get(company.getId());
+		
+		if(company.getName().contains(name) == false) {
+			System.out.println("novo nome");
+			updateCompany.setName(name);
+		}
+		if(company.getDate().equals(date) == false) {
+			System.out.println("novo data");
+			updateCompany.setDate(date);
+		}
+		
+		
+		return updateCompany;
 	}
 	
 }

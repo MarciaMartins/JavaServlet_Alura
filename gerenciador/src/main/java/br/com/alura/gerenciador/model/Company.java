@@ -14,6 +14,14 @@ public class Company {
 		this.cnpj=cnpj;
 		this.date = LocalDate.now();
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
 	public Integer getId() {
 		return id;
@@ -33,6 +41,10 @@ public class Company {
 	
 	public LocalDate getDate() {
 		return date;
+	}
+	
+	public String getCnpj() {
+		return cnpj;
 	}
 
 }

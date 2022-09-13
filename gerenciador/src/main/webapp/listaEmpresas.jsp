@@ -11,12 +11,15 @@
 	<body>
 		<c:if test="${ not empty company }">
 			<p>Empresa <i><b>${company}</i></b> cadastrada com sucesso.</p>
+			<p>CNPJ - ${cnpj}</p>
 		</c:if>
-	
 		<p>Empresas cadastradas no sistema</p>
 		<ul>
 			<c:forEach items="${listCompany}" var="company">
-				<li><p>${company.name}; CNPJ: ${company.cnpj}; Dt.Inclus„o: <fmt:formatDate value="${company.date}" pattern="dd/MM/yyyy"/></p>
+				<li><p>${company.name}; CNPJ: ${company.cnpj}; 
+				Dt.Inclus√£o: <fmt:formatDate value="${company.date}" pattern="dd/MM/yyyy"/>
+				<a href="/gerenciador/editarEmpresa?cnpj=${company.cnpj}"">editar</a>        
+				<a href="/gerenciador/excluirEmpresa?cnpj=${company.cnpj}">    excluir</a></p>
 				</li>
 			</c:forEach>
 		</ul>

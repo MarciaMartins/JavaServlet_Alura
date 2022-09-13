@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,16 +21,22 @@ public class ListCompanyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<CompanyResponse> listCompanyResponse = new ArrayList<CompanyResponse>();
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private Boolean firstCall = true;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		Bank bank = new Bank();
-			
-		List<Company> listCompany = bank.getListCompany();
 		
-		if(listCompany.isEmpty()) {
+		
+		List<Company> listCompany = bank.getListCompany();
+
+		if(listCompany.isEmpty() && firstCall) {
+
 			Company Alura = new Company("Alura", "123444");
 			Company Caelum = new Company("Caelum", "33444");
 			bank.add(Alura);
 			bank.add(Caelum);
+			firstCall=false;
 		}		
 		
 		listCompany.forEach(c -> {
